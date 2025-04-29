@@ -23,6 +23,7 @@ public class Main {
         }
         
         // 3. UPDATE - Update the user
+        assert retrievedUser != null;
         retrievedUser.setName("Jane Doe");
         retrievedUser.setEmail("jane.doe@example.com");
         boolean updateSuccess = userDAO.update(retrievedUser);
