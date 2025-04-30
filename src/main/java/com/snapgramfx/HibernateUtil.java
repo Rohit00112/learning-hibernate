@@ -1,5 +1,6 @@
 package com.snapgramfx;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -13,8 +14,13 @@ public class HibernateUtil {
 
     static {
         try {
+
+
             // Create the SessionFactory from hibernate.cfg.xml
             Configuration configuration = new Configuration();
+
+
+
             configuration.configure();
 
             // Explicitly add the entity classes

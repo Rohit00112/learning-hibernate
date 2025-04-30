@@ -3,6 +3,7 @@ package com.snapgramfx;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  * Provides CRUD operations for Student objects
  */
 public class StudentDAO {
-    
+
+
+
     /**
      * Create a new student in the database
      * @param student The student to be saved
@@ -117,17 +120,31 @@ public class StudentDAO {
      */
     @SuppressWarnings("unchecked")
     public List<Student> getAllstudents() {
+//        return all students from the database
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Student> students = null;
-        
+        List<Student> students = new ArrayList<>();
         try {
-            students = session.createQuery("FROM Student").list();
+            students = session.createQuery("from Student").list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        
         return students;
+    }
+
+    public Student readByEmail(String email) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Student student = null;
+        try {
+            student = (Student) session.createQuery("from Student where email = :email")
+                    .setParameter("email", email)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return student;
     }
 }
