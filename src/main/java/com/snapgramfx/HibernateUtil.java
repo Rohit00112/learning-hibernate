@@ -1,6 +1,5 @@
 package com.snapgramfx;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -10,7 +9,7 @@ import org.hibernate.service.ServiceRegistry;
  * Hibernate Utility class with a convenient method to get Session Factory
  */
 public class HibernateUtil {
-    private static SessionFactory sessionFactory;
+    private static final SessionFactory sessionFactory;
 
     static {
         try {
