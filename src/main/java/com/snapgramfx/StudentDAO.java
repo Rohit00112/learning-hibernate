@@ -6,24 +6,24 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 /**
- * Data Access Object for User entity
- * Provides CRUD operations for User objects
+ * Data Access Object for Student entity
+ * Provides CRUD operations for Student objects
  */
-public class UserDAO {
+public class StudentDAO {
     
     /**
-     * Create a new user in the database
-     * @param user The user to be saved
-     * @return The ID of the saved user
+     * Create a new student in the database
+     * @param student The student to be saved
+     * @return The ID of the saved student
      */
-    public Long create(User user) {
+    public Long create(Student student) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        Long userId = null;
+        Long studentId = null;
         
         try {
             transaction = session.beginTransaction();
-            userId = (Long) session.save(user);
+            studentId = (Long) session.save(student);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -34,42 +34,42 @@ public class UserDAO {
             session.close();
         }
         
-        return userId;
+        return studentId;
     }
     
     /**
-     * Retrieve a user by ID
-     * @param id The ID of the user to retrieve
-     * @return The user object or null if not found
+     * Retrieve a student by ID
+     * @param id The ID of the student to retrieve
+     * @return The student object or null if not found
      */
-    public User read(Long id) {
+    public Student read(Long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        User user = null;
+        Student student = null;
         
         try {
-            user = session.get(User.class, id);
+            student = session.get(Student.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         
-        return user;
+        return student;
     }
     
     /**
-     * Update an existing user
-     * @param user The user object with updated values
+     * Update an existing student
+     * @param student The student object with updated values
      * @return true if update was successful, false otherwise
      */
-    public boolean update(User user) {
+    public boolean update(Student student) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         boolean success = false;
         
         try {
             transaction = session.beginTransaction();
-            session.update(user);
+            session.update(student);
             transaction.commit();
             success = true;
         } catch (Exception e) {
@@ -85,18 +85,18 @@ public class UserDAO {
     }
     
     /**
-     * Delete a user from the database
-     * @param user The user to delete
+     * Delete a student from the database
+     * @param student The student to delete
      * @return true if deletion was successful, false otherwise
      */
-    public boolean delete(User user) {
+    public boolean delete(Student student) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         boolean success = false;
         
         try {
             transaction = session.beginTransaction();
-            session.delete(user);
+            session.delete(student);
             transaction.commit();
             success = true;
         } catch (Exception e) {
@@ -112,22 +112,22 @@ public class UserDAO {
     }
     
     /**
-     * Get all users from the database
-     * @return List of all users
+     * Get all students from the database
+     * @return List of all students
      */
     @SuppressWarnings("unchecked")
-    public List<User> getAllUsers() {
+    public List<Student> getAllstudents() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User> users = null;
+        List<Student> students = null;
         
         try {
-            users = session.createQuery("FROM User").list();
+            students = session.createQuery("FROM Student").list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         
-        return users;
+        return students;
     }
 }

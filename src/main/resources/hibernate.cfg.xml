@@ -28,6 +28,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Names the annotated entity classes -->
-        <mapping class="com.snapgramfx.User"/>
+        <mapping class="com.snapgramfx.Student"/>
     </session-factory>
 </hibernate-configuration>

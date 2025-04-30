@@ -3,8 +3,12 @@ package com.snapgramfx;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "students",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email")
+        }
+)
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +17,11 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
+
+    @Column(name = "email", unique = true)
     private String email;
 
-    public User() {
+    public Student() {
     }
 
     // Getters and Setters

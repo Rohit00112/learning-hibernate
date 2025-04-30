@@ -12,11 +12,11 @@ public class DataPopulator {
             transaction = session.beginTransaction();
 
             // Create dummy users
-            User user1 = new User();
-           user1.setName("Sujan Subedi");
-           user1.setEmail("sujan@gmail.com");
-           session.save(user1);
-           
+            Student student = new Student();
+           student.setName("Sujan Subedi");
+           student.setEmail("sujan@gmail.com");
+           session.save(student);
+
 
             transaction.commit();
             System.out.println("Dummy data inserted successfully!");
